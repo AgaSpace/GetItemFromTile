@@ -206,17 +206,17 @@ namespace GetItemFromTile
 
             TileObjectData data = TileObjectData._data[type];
 
-            int x1 = (int)t.frameX / data.CoordinateFullWidth;
-            int y1 = (int)t.frameY / data.CoordinateFullHeight;
+            int x = (int)t.frameX / data.CoordinateFullWidth;
+            int y = (int)t.frameY / data.CoordinateFullHeight;
 
             int wrap = data.StyleWrapLimit;
             if (wrap == 0)
                 wrap = 1;
             int hor;
             if (data.StyleHorizontal)
-                hor = y1 * wrap + x1;
+                hor = y * wrap + x;
             else
-                hor = x1 * wrap + y1;
+                hor = x * wrap + y;
 
             int expectedStyle = hor / data.StyleMultiplier;
 
@@ -224,9 +224,9 @@ namespace GetItemFromTile
             if (styleLineSkip > 1)
             {
                 if (data.StyleHorizontal)
-                    expectedStyle = y1 / styleLineSkip * wrap + x1;
+                    expectedStyle = y / styleLineSkip * wrap + x;
                 else
-                    expectedStyle = x1 / styleLineSkip * wrap + y1;
+                    expectedStyle = x / styleLineSkip * wrap + y;
             }
 
             return expectedStyle;
